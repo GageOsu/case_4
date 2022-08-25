@@ -18,6 +18,7 @@ using Emgu.CV.Structure;
 using Emgu.Util;
 using Emgu.CV.Features2D;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace case_4
 {
@@ -51,7 +52,7 @@ namespace case_4
         {
             try
             {
-                if(String.IsNullOrEmpty(filePath) || String.IsNullOrWhiteSpace(filePath))
+                if (String.IsNullOrEmpty(filePath) || String.IsNullOrWhiteSpace(filePath))
                 {
                     throw new Exception("Документ не выбран");
                 }
@@ -61,16 +62,22 @@ namespace case_4
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
                     tesseract.Recognize();
                     richTextBox1.Text = tesseract.GetUTF8Text();
-                    if (richTextBox1.Text.ToLower.Contains("Лес"))
+                    string str = richTextBox1.Text;
+                    if (str.IndexOf(textBox1.Text) != -1)
                     {
+                        MessageBox.Show("Найдено!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не обнаружено!");
 
+
+
+
+                        tesseract.Dispose();
                     }
 
-
-
-                    tesseract.Dispose();
                 }
-
             }
             catch (Exception ex)
             {
