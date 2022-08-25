@@ -94,7 +94,7 @@ namespace case_4
                     // проверка на АКТ
                     else if (((str.IndexOf(" АКТ ") != -1) || (str.IndexOf(" Акт ") != -1)) || ((str.IndexOf(" акт ") != -1)))
                     {
-                        MessageBox.Show("Документ: Акт");
+                        MessageBox.Show(" Документ: Акт");
                     }
 
                     // Проверка на ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР
