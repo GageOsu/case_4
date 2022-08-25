@@ -87,8 +87,8 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(130, 24);
-            this.toolStripButton1.Text = "Распознать текст";
+            this.toolStripButton1.Size = new System.Drawing.Size(161, 24);
+            this.toolStripButton1.Text = "Распознать документ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // tableLayoutPanel1
@@ -96,8 +96,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.richTextBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 55);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -140,7 +140,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.ShowIcon = false;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

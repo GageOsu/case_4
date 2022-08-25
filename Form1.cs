@@ -33,7 +33,7 @@ namespace case_4
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult res = openFileDialog1.ShowDialog();
-            // Обработка ошибки
+            // Пользователь выбирает файл 
             if (res == DialogResult.OK)
             {
                 filePath = openFileDialog1.FileName;
@@ -41,7 +41,7 @@ namespace case_4
             }
             else
             {
-                MessageBox.Show("Скан не выбран", "Выберете сканнированый документ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Документ не выбран", "Выберете сканнированый документ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -67,8 +67,14 @@ namespace case_4
                         MessageBox.Show("Документ: Счет-фактура");
                     }
 
+                    // Проверка на ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР
+                    else if (((str.IndexOf("ПРИХОДНЫЙ") != -1) && (str.IndexOf("КАССОВЫЙ ОРДЕР") != -1)) || ((str.IndexOf("приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)) || ((str.IndexOf("Приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)))
+                    {
+                        MessageBox.Show("Документ: Счет на оплату");
+                    }
+
                     // проверка на Отчет
-                    else if (((str.IndexOf(" ОТЧЕТ ") != -1) || (str.IndexOf(" отчет ") != -1)) || ((str.IndexOf(" Отчет ") != -1)))
+                    else if (((str.IndexOf("ОТЧЕТ ") != -1) || (str.IndexOf("отчет ") != -1)) || ((str.IndexOf("Отчет ") != -1)))
                     {
                         MessageBox.Show("Документ: Отчет");
                     }
@@ -80,7 +86,7 @@ namespace case_4
                     }
 
                     // проверка на Счет
-                    else if (((str.IndexOf(" счет ") != -1) || (str.IndexOf(" Счет ") != -1)) || ((str.IndexOf(" СЧЕТ ") != -1)))
+                    else if (((str.IndexOf("счет ") != -1) || (str.IndexOf("Счет ") != -1)) || ((str.IndexOf("СЧЕТ ") != -1)))
                     {
                         MessageBox.Show("Документ: Счет");
                     }
@@ -92,26 +98,20 @@ namespace case_4
                     }
 
                     // проверка на АКТ
-                    else if (((str.IndexOf(" АКТ ") != -1) || (str.IndexOf(" Акт ") != -1)) || ((str.IndexOf(" акт ") != -1)))
+                    else if (((str.IndexOf("АКТ ") != -1) || (str.IndexOf("Акт ") != -1)) || ((str.IndexOf("акт ") != -1)))
                     {
                         MessageBox.Show(" Документ: Акт");
                     }
 
-                    // Проверка на ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР
-                    else if (((str.IndexOf("ПРИХОДНЫЙ") != -1) && (str.IndexOf("КАССОВЫЙ ОРДЕР") != -1)) || ((str.IndexOf("приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)) || ((str.IndexOf("Приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)))
-                    {
-                        MessageBox.Show("Документ: Счет на оплату");
-                    }
-
                     // проверка на Справка
-                    else if (((str.IndexOf(" справка ") != -1) || (str.IndexOf(" Справка ") != -1)) || ((str.IndexOf(" СПРАВКА ") != -1)))
+                    else if (((str.IndexOf("справка ") != -1) || (str.IndexOf("Справка ") != -1)) || ((str.IndexOf("СПРАВКА ") != -1)))
                     {
                         MessageBox.Show("Документ: Справка");
                     }
 
                     else
                     {
-                        MessageBox.Show("Нет");
+                        MessageBox.Show("ТЫ УМНИЦА");
                     }
 
                             tesseract.Dispose();
