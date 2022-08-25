@@ -47,11 +47,10 @@ namespace case_4
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            try
-            {
+
                 if (String.IsNullOrEmpty(filePath) || String.IsNullOrWhiteSpace(filePath))
                 {
-                    throw new Exception("Документ не выбран");
+                    MessageBox.Show("Документ не выбран");
                 }
                 else
                 {
@@ -118,10 +117,8 @@ namespace case_4
 
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Oшибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
-    }
-}
+    
+
