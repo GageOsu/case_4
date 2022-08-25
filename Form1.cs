@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
-
-using Emgu.CV.CvEnum;
 
 using Emgu;
 using Emgu.CV;
@@ -17,7 +16,6 @@ using Emgu.CV.OCR;
 using Emgu.CV.Structure;
 using Emgu.Util;
 using Emgu.CV.Features2D;
-using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace case_4
@@ -62,8 +60,9 @@ namespace case_4
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
                     tesseract.Recognize();
                     richTextBox1.Text = tesseract.GetUTF8Text();
+
                     string str = richTextBox1.Text;
-                    if (str.IndexOf(textBox1.Text) != -1)
+                    if (str.IndexOf("Лес") != -1)
                     {
                         MessageBox.Show("Найдено!");
                     }
@@ -71,11 +70,8 @@ namespace case_4
                     {
                         MessageBox.Show("Не обнаружено!");
 
-
-
-
-                        tesseract.Dispose();
                     }
+                    tesseract.Dispose();
 
                 }
             }
