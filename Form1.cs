@@ -33,7 +33,7 @@ namespace case_4
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult res = openFileDialog1.ShowDialog();
-
+            // Обработка ошибки
             if (res == DialogResult.OK)
             {
                 filePath = openFileDialog1.FileName;
@@ -61,16 +61,60 @@ namespace case_4
                     richTextBox1.Text = tesseract.GetUTF8Text();
 
                     string str = richTextBox1.Text;
-                    if ((str.IndexOf("Акт сдачи-приемки") != -1) || (str.IndexOf("акт сдачи-приемки") != -1) || (str.IndexOf("АКТ сдачи-приемки") != -1))
+                    // проверка на Счет-фактура
+                    if (((str.IndexOf("СЧЕТ-ФАКТУРА") != -1) || (str.IndexOf("Счет-фактура") != -1)) || ((str.IndexOf("счет-фактура") != -1)))
                     {
-                        MessageBox.Show("Докуумент: Акт сдачи-приемки");
+                        MessageBox.Show("Документ: Счет-фактура");
                     }
+
+                    // проверка на Отчет
+                    else if (((str.IndexOf(" ОТЧЕТ ") != -1) || (str.IndexOf(" отчет ") != -1)) || ((str.IndexOf(" Отчет ") != -1)))
+                    {
+                        MessageBox.Show("Документ: Отчет");
+                    }
+
+                    // Проверка на счет на оплату 
+                    else if (((str.IndexOf("СЧЕТ") != -1) && (str.IndexOf("НА ОПЛАТУ") != -1)) || ((str.IndexOf("счет") != -1) && (str.IndexOf("на оплату") != -1)) || ((str.IndexOf("Счет") != -1) && (str.IndexOf("на оплату") != -1)))
+                    {
+                        MessageBox.Show("Документ: Счет на оплату");
+                    }
+
+                    // проверка на Счет
+                    else if (((str.IndexOf(" счет ") != -1) || (str.IndexOf(" Счет ") != -1)) || ((str.IndexOf(" СЧЕТ ") != -1)))
+                    {
+                        MessageBox.Show("Документ: Счет");
+                    }
+
+                    // Проверка на АКТ СДАЧИ ПРИЕМКИ 
+                    else if (((str.IndexOf("сдачи-приемки") != -1) && (str.IndexOf("Акт") != -1)) || ((str.IndexOf("сдачи-приемки") != -1) && (str.IndexOf("АКТ") != -1)) || ((str.IndexOf("СДАЧИ-ПРИЕМКИ") != -1) && (str.IndexOf("АКТ") != -1)))
+                    {
+                        MessageBox.Show("Документ: Акт сдачи-приемки");
+                    }
+
+                    // проверка на АКТ
+                    else if (((str.IndexOf(" АКТ ") != -1) || (str.IndexOf(" Акт ") != -1)) || ((str.IndexOf(" акт ") != -1)))
+                    {
+                        MessageBox.Show("Документ: Акт");
+                    }
+
+                    // Проверка на ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР
+                    else if (((str.IndexOf("ПРИХОДНЫЙ") != -1) && (str.IndexOf("КАССОВЫЙ ОРДЕР") != -1)) || ((str.IndexOf("приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)) || ((str.IndexOf("Приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)))
+                    {
+                        MessageBox.Show("Документ: Счет на оплату");
+                    }
+
+                    // проверка на Справка
+                    else if (((str.IndexOf(" справка ") != -1) || (str.IndexOf(" Справка ") != -1)) || ((str.IndexOf(" СПРАВКА ") != -1)))
+                    {
+                        MessageBox.Show("Документ: Справка");
+                    }
+
                     else
                     {
-                        MessageBox.Show("Не обнаружено!");
-
+                        MessageBox.Show("Нет");
                     }
-                    tesseract.Dispose();
+
+                            tesseract.Dispose();
 
                 }
             }
