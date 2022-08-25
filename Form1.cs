@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-
 using Emgu;
 using Emgu.CV;
 using Emgu.CV.Util;
@@ -22,7 +21,7 @@ namespace case_4
 {
     public partial class Form1 : Form
     {
-
+        // Объявления переменной 
         private string filePath = string.Empty;
         private string lang = "rus";
         
@@ -62,9 +61,9 @@ namespace case_4
                     richTextBox1.Text = tesseract.GetUTF8Text();
 
                     string str = richTextBox1.Text;
-                    if (str.IndexOf("Лес") != -1)
+                    if ((str.IndexOf("Акт сдачи-приемки") != -1) || (str.IndexOf("акт сдачи-приемки") != -1) || (str.IndexOf("АКТ сдачи-приемки") != -1))
                     {
-                        MessageBox.Show("Найдено!");
+                        MessageBox.Show("Докуумент: Акт сдачи-приемки");
                     }
                     else
                     {
