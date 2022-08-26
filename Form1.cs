@@ -22,7 +22,7 @@ namespace case_4
 {
     public partial class Form1 : Form
     {
-        // Объявления переменной 
+        // Объявления переменных 
         private string filePath = string.Empty;
         private string lang = "rus";
         
@@ -48,14 +48,13 @@ namespace case_4
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-
                 if (String.IsNullOrEmpty(filePath) || String.IsNullOrWhiteSpace(filePath))
                 {
                     MessageBox.Show("Документ не выбран");
                 }
                 else
                 {
-                    Tesseract tesseract = new Tesseract(@"C:\Users\danni\Desktop\DriveHack\case_4\bin\Debug", lang, OcrEngineMode.TesseractLstmCombined);
+                    Tesseract tesseract = new Tesseract(@"C:\Users\stasc\source\repos\reals\rus", lang, OcrEngineMode.TesseractLstmCombined);
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
                     tesseract.Recognize();
                     richTextBox1.Text = tesseract.GetUTF8Text();
@@ -68,31 +67,31 @@ namespace case_4
 
                     // Проверка на  ОРДЕР
                     else if (Regex.IsMatch(richTextBox1.Text, "\\bОрдер\\b") || Regex.IsMatch(richTextBox1.Text, "\\bОРДЕР\\b") || Regex.IsMatch(richTextBox1.Text, "\\bордер\\b"))
-                {
+                    {
                         MessageBox.Show("Документ: Ордер");
                     }
 
                     // проверка на Отчет
                     else if (Regex.IsMatch(richTextBox1.Text, "\\bОтчет\\b") || Regex.IsMatch(richTextBox1.Text, "\\bОТЧЕТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bотчет\\b"))
-                {
+                    {
                         MessageBox.Show("Документ: Отчет");
                     }
 
                     // проверка на АКТ
                     else if (Regex.IsMatch(richTextBox1.Text, "\\bАкт\\b") || Regex.IsMatch(richTextBox1.Text, "\\bАКТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bакт\\b"))
-                {
+                    {
                         MessageBox.Show(" Документ: Акт");
                     }
 
                     // проверка на Справка
                     else if (Regex.IsMatch(richTextBox1.Text, "\\bСправка\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСПРАВКА\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсправка\\b"))
-                {
+                    {
                         MessageBox.Show("Документ: Справка");
                     }
 
                     // проверка на Счет
                     else if (Regex.IsMatch(richTextBox1.Text, "\\bСчет\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСЧЕТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсчет\\b"))
-                {
+                    {
                         MessageBox.Show("Документ: Счет");
                     }
 
@@ -100,13 +99,11 @@ namespace case_4
                     {
                         MessageBox.Show("Документ: Не распознан");
                     }
-
-                            tesseract.Dispose();
+                tesseract.Dispose();
 
                 }
-            }
-
-            }
         }
+    }
+}
     
 
