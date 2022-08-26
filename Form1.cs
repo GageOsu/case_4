@@ -51,6 +51,7 @@ namespace case_4
                 if (String.IsNullOrEmpty(filePath) || String.IsNullOrWhiteSpace(filePath))
                 {
                     MessageBox.Show("Документ не выбран");
+                //dfghdfgherg
                 }
                 else
                 {
