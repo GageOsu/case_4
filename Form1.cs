@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,58 +55,49 @@ namespace case_4
                 }
                 else
                 {
-                    Tesseract tesseract = new Tesseract(@"C:\Users\danni\Desktop", lang, OcrEngineMode.TesseractLstmCombined);
+                    Tesseract tesseract = new Tesseract(@"C:\Users\danni\Desktop\DriveHack\case_4\rus\", lang, OcrEngineMode.TesseractLstmCombined);
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
                     tesseract.Recognize();
                     richTextBox1.Text = tesseract.GetUTF8Text();
 
                     string str = richTextBox1.Text;
+
+                
+
                     // проверка на Счет-фактура
-                    if (((str.IndexOf("СЧЕТ-ФАКТУРА") != -1) || (str.IndexOf("Счет-фактура") != -1)) || ((str.IndexOf("счет-фактура") != -1)))
+                    if (Regex.IsMatch(richTextBox1.Text, "\\bСчет-фактура\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСЧЕТ-ФАКТУРА\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсчет-фактура\\b"))
                     {
                         MessageBox.Show("Документ: Счет-фактура");
                     }
 
-                    // Проверка на ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР
-                    else if (((str.IndexOf("ПРИХОДНЫЙ") != -1) && (str.IndexOf("КАССОВЫЙ ОРДЕР") != -1)) || ((str.IndexOf("приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)) || ((str.IndexOf("Приходный") != -1) && (str.IndexOf("кассовый ордер") != -1)))
-                    {
-                        MessageBox.Show("Документ: Приходный кассовый ордер");
+                    // Проверка на  ОРДЕР
+                    else if (Regex.IsMatch(richTextBox1.Text, "\\bОрдер\\b") || Regex.IsMatch(richTextBox1.Text, "\\bОРДЕР\\b") || Regex.IsMatch(richTextBox1.Text, "\\bордер\\b"))
+                {
+                        MessageBox.Show("Документ: Ордер");
                     }
 
                     // проверка на Отчет
-                    else if (((str.IndexOf("ОТЧЕТ ") != -1) || (str.IndexOf("отчет ") != -1)) || ((str.IndexOf("Отчет ") != -1)))
-                    {
+                    else if (Regex.IsMatch(richTextBox1.Text, "\\bОтчет\\b") || Regex.IsMatch(richTextBox1.Text, "\\bОТЧЕТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bотчет\\b"))
+                {
                         MessageBox.Show("Документ: Отчет");
                     }
 
-                    // Проверка на счет на оплату 
-                    else if (((str.IndexOf("СЧЕТ") != -1) && (str.IndexOf("НА ОПЛАТУ") != -1)) || ((str.IndexOf("счет") != -1) && (str.IndexOf("на оплату") != -1)) || ((str.IndexOf("Счет") != -1) && (str.IndexOf("на оплату") != -1)))
-                    {
-                        MessageBox.Show("Документ: Счет на оплату");
-                    }
-
-                    // проверка на Счет
-                    else if (((str.IndexOf("счет ") != -1) || (str.IndexOf("Счет ") != -1)) || ((str.IndexOf("СЧЕТ ") != -1)))
-                    {
-                        MessageBox.Show("Документ: Счет");
-                    }
-
-                    // Проверка на АКТ СДАЧИ ПРИЕМКИ 
-                    else if (((str.IndexOf("сдачи-приемки") != -1) && (str.IndexOf("Акт") != -1)) || ((str.IndexOf("сдачи-приемки") != -1) && (str.IndexOf("АКТ") != -1)) || ((str.IndexOf("СДАЧИ-ПРИЕМКИ") != -1) && (str.IndexOf("АКТ") != -1)))
-                    {
-                        MessageBox.Show("Документ: Акт сдачи-приемки");
-                    }
-
                     // проверка на АКТ
-                    else if (((str.IndexOf("АКТ ") != -1) || (str.IndexOf("Акт ") != -1)) || ((str.IndexOf("акт ") != -1)))
-                    {
+                    else if (Regex.IsMatch(richTextBox1.Text, "\\bАкт\\b") || Regex.IsMatch(richTextBox1.Text, "\\bАКТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bакт\\b"))
+                {
                         MessageBox.Show(" Документ: Акт");
                     }
 
                     // проверка на Справка
-                    else if (((str.IndexOf("справка ") != -1) || (str.IndexOf("Справка ") != -1)) || ((str.IndexOf("СПРАВКА ") != -1)))
-                    {
+                    else if (Regex.IsMatch(richTextBox1.Text, "\\bСправка\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСПРАВКА\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсправка\\b"))
+                {
                         MessageBox.Show("Документ: Справка");
+                    }
+
+                    // проверка на Счет
+                    else if (Regex.IsMatch(richTextBox1.Text, "\\bСчет\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСЧЕТ\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсчет\\b"))
+                {
+                        MessageBox.Show("Документ: Счет");
                     }
 
                     else
