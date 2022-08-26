@@ -55,14 +55,10 @@ namespace case_4
                 }
                 else
                 {
-                    Tesseract tesseract = new Tesseract(@"C:\Users\danni\Desktop\DriveHack\case_4\rus\", lang, OcrEngineMode.TesseractLstmCombined);
+                    Tesseract tesseract = new Tesseract(@"C:\Users\danni\Desktop\DriveHack\case_4\bin\Debug", lang, OcrEngineMode.TesseractLstmCombined);
                     tesseract.SetImage(new Image<Bgr, byte>(filePath));
                     tesseract.Recognize();
                     richTextBox1.Text = tesseract.GetUTF8Text();
-
-                    string str = richTextBox1.Text;
-
-                
 
                     // проверка на Счет-фактура
                     if (Regex.IsMatch(richTextBox1.Text, "\\bСчет-фактура\\b") || Regex.IsMatch(richTextBox1.Text, "\\bСЧЕТ-ФАКТУРА\\b") || Regex.IsMatch(richTextBox1.Text, "\\bсчет-фактура\\b"))
@@ -102,7 +98,7 @@ namespace case_4
 
                     else
                     {
-                        MessageBox.Show("ТЫ УМНИЦА");
+                        MessageBox.Show("Документ: Не распознан");
                     }
 
                             tesseract.Dispose();
